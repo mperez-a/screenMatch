@@ -1,27 +1,20 @@
-public class Movie {
-    String name;
-    int launchingDate;
-    int duration;
-    boolean planIncluded;
-    private double  gradesAdittion;
-    private int totalEvaluations;
+package com.aluracursos.screenmatch.models;
 
-    int getTotalEvaluations() {
-        return (totalEvaluations);
+import com.aluracursos.screenmatch.calculations.Clasification;
+
+public class Movie extends Title implements Clasification {
+    private String director;
+
+    public String getDirector() {
+        return director;
     }
 
-    void showDataSheet() {
-        System.out.println("Movie's name is: " + name);
-        System.out.println("Launching date: " + launchingDate);
-        System.out.println("Duration in minutes: " + duration);
+    public void setDirector(String director) {
+        this.director = director;
     }
 
-    void evaluate(double grade) {
-        gradesAdittion += grade;
-        totalEvaluations++;
-    }
-
-    double  averageCalculation() {
-        return (gradesAdittion / totalEvaluations);
+    @Override
+    public int getClasification() {
+        return (int) (averageCalculation() / 2);
     }
 }
