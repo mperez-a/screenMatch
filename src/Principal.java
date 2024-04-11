@@ -1,4 +1,6 @@
+import com.aluracursos.screenmatch.calculations.RecommendationsFilter;
 import com.aluracursos.screenmatch.calculations.TimeCalculator;
+import com.aluracursos.screenmatch.models.Episode;
 import com.aluracursos.screenmatch.models.Movie;
 import com.aluracursos.screenmatch.models.Show;
 
@@ -41,5 +43,16 @@ public class Principal {
         timeCalculator.includes(dragonHouse);
         timeCalculator.includes(anotherMovie);
         System.out.println(timeCalculator.getTotalTime());
+
+        RecommendationsFilter recommendationsFilter = new RecommendationsFilter();
+        recommendationsFilter.filter(myMovie);
+
+        Episode episode = new Episode();
+        episode.setNumEpisode(1);
+        episode.setName("La casa de papel");
+        episode.setShow(dragonHouse);
+        episode.setTotalViews(50);
+
+        recommendationsFilter.filter(episode);
     }
 }
