@@ -5,6 +5,10 @@ import com.aluracursos.screenmatch.calculations.Clasification;
 public class Movie extends Title implements Clasification {
     private String director;
 
+    public Movie(String name, int launchingDate) {
+        super(name, launchingDate);
+    }
+
     public String getDirector() {
         return director;
     }
@@ -16,5 +20,10 @@ public class Movie extends Title implements Clasification {
     @Override
     public int getClasification() {
         return (int) (averageCalculation() / 2);
+    }
+
+    @Override
+    public String toString() {
+        return "Pelicula: " + this.getName() + " (" + getLaunchingDate() + ")";
     }
 }

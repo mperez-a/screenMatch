@@ -1,14 +1,16 @@
+package com.aluracursos.screenmatch.principal;
+
 import com.aluracursos.screenmatch.calculations.RecommendationsFilter;
 import com.aluracursos.screenmatch.calculations.TimeCalculator;
 import com.aluracursos.screenmatch.models.Episode;
 import com.aluracursos.screenmatch.models.Movie;
 import com.aluracursos.screenmatch.models.Show;
 
+import java.util.ArrayList;
+
 public class Principal {
     public static void main(String[] args) {
-        Movie myMovie = new Movie();
-        myMovie.setName("Encanto");
-        myMovie.setLaunchingDate(2021);
+        Movie myMovie = new Movie("Encanto", 2021);
         myMovie.setDuration(120);
         myMovie.setPlanIncluded(true);
 
@@ -24,23 +26,19 @@ public class Principal {
         System.out.println(myMovie.getTotalEvaluations());
         System.out.println(myMovie.averageCalculation());
 
-        Show dragonHouse = new Show();
-        dragonHouse.setName("Dragon House");
-        dragonHouse.setLaunchingDate(2022);
-        dragonHouse.setSeasons(1);
-        dragonHouse.setMinutesByEpisodes(50);
-        dragonHouse.setEpisodesBySeasons(10);
-        dragonHouse.showDataSheet();
-        System.out.println(dragonHouse.getDuration());
+        Show lost = new Show("Lost", 2022);
+        lost.setSeasons(1);
+        lost.setMinutesByEpisodes(50);
+        lost.setEpisodesBySeasons(10);
+        lost.showDataSheet();
+        System.out.println(lost.getDuration());
 
-        Movie anotherMovie = new Movie();
-        anotherMovie.setName("Matrix");
-        anotherMovie.setLaunchingDate(1998);
+        Movie anotherMovie = new Movie("Avatar", 1998);
         anotherMovie.setDuration(180);
 
         TimeCalculator timeCalculator = new TimeCalculator();
         timeCalculator.includes(myMovie);
-        timeCalculator.includes(dragonHouse);
+        timeCalculator.includes(lost);
         timeCalculator.includes(anotherMovie);
         System.out.println(timeCalculator.getTotalTime());
 
@@ -50,9 +48,25 @@ public class Principal {
         Episode episode = new Episode();
         episode.setNumEpisode(1);
         episode.setName("La casa de papel");
-        episode.setShow(dragonHouse);
+        episode.setShow(lost);
         episode.setTotalViews(50);
 
         recommendationsFilter.filter(episode);
+
+        var manuelasMovie = new Movie("El señor de los anillos", 2001);
+        manuelasMovie.setDuration(180);
+
+        ArrayList<Movie> moviesList = new ArrayList<>();
+        moviesList.add(manuelasMovie);
+        moviesList.add(myMovie);
+        moviesList.add(anotherMovie);
+
+        System.out.println("Tamaño de la lista: " + moviesList.size());
+        System.out.println("La primera pelicula es: " + moviesList.getFirst().getName());
+
+        System.out.println(moviesList.toString());
+
+        System.out.println("ToString de la pelicula: " + moviesList.getFirst().toString());
+
     }
 }
